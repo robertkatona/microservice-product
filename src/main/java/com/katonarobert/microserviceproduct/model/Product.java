@@ -1,8 +1,8 @@
 package com.katonarobert.microserviceproduct.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -12,7 +12,8 @@ public class Product {
     private int Id;
     private String imgSrc;
     private String description;
-    // private Review review;
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
 
 
     public Product() {
@@ -21,6 +22,7 @@ public class Product {
     public Product(String imgSrc, String description) {
         this.imgSrc = imgSrc;
         this.description = description;
+        this.reviews = new ArrayList<>();
     }
 
     public int getId() {
@@ -35,12 +37,17 @@ public class Product {
         return description;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "Id=" + Id  + '\'' +
+                "Id=" + Id +
                 ", imgSrc='" + imgSrc + '\'' +
                 ", description='" + description + '\'' +
+                ", reviews=" + reviews +
                 '}';
     }
 }
