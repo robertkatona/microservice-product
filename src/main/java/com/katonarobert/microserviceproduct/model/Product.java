@@ -8,7 +8,7 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     private String imgSrc;
     private String description;
@@ -49,5 +49,9 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", reviews=" + reviews +
                 '}';
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 }

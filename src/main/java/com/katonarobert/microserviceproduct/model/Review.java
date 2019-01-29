@@ -6,15 +6,19 @@ import javax.persistence.*;
 public class Review {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
     @ManyToOne
     @JoinColumn(name = "fk_product")
     private Product product;
-    private int reviewValue;
+    private String reviewValue;
 
 
     public Review() {
     }
 
+    public Review(Product product, String reviewValue) {
+        this.product = product;
+        this.reviewValue = reviewValue;
+    }
 }
