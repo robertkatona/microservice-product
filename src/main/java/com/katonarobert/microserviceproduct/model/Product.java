@@ -9,7 +9,7 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private Long Id;
+    private int Id;
     private String imgSrc;
     private String description;
     // private Review review;
@@ -23,10 +23,22 @@ public class Product {
         this.description = description;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "Id=" + Id +
+                "Id=" + Id  + '\'' +
                 ", imgSrc='" + imgSrc + '\'' +
                 ", description='" + description + '\'' +
                 '}';
