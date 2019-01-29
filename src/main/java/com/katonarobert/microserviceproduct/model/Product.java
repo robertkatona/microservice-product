@@ -17,4 +17,18 @@ public class Product {
 
     public Product() {
     }
+
+    public Product(String imgSrc, String description) {
+        this.imgSrc = imgSrc;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "Id=" + Id +
+                ", imgSrc='" + imgSrc + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
