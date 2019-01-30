@@ -35,25 +35,21 @@ public class ProductController {
 //    }
 
     @PostMapping(value = "/add-product")
-    public void addProduct(@RequestBody Product product)
-    {
-        System.out.println(product);
+    public void addProduct(@RequestBody String product) throws JSONException {
+        JSONObject jsonObj = new JSONObject(product);
         Product newProductWithOutId = new Product(
-                product.getName(),
-                product.getImgSrc(),
-                product.getDescription(),
-                product.getPrice());
+                jsonObj.getJSONObject("product").getString("name"),
+                jsonObj.getJSONObject("product").getString("imgSrc"),
+                jsonObj.getJSONObject("product").getString("description"),
+                jsonObj.getJSONObject("product").getDouble("price"));
         productService.add(newProductWithOutId);
+
     }
 
-    @PostMapping(value = "/{id}/add-review")
-    public void addReview(@PathVariable String id, @RequestBody String reviewValue) throws JSONException {
-
-        JSONObject json = new JSONObject(reviewValue);
-        String reviewString = (String) json.get("review");
-
+    @PostMapping(value = "/add-review")
+    public void addReview(@RequestParam(value = "productId") String id, @RequestParam(value = "reviewValue") String reviewValue) {
         Product byId = productService.getById(Integer.parseInt(id));
-        Review review = new Review(byId, reviewString);
+        Review review = new Review(byId, reviewValue);
         byId.addReview(review);
         reviewService.add(review);
 

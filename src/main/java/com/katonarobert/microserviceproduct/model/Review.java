@@ -13,7 +13,6 @@ public class Review {
     private Product product;
     private String reviewValue;
 
-
     public Review() {
     }
 
