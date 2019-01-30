@@ -36,7 +36,6 @@ public class ProductController {
 
     @PostMapping(value = "/add-product")
     public void addProduct(@RequestBody String product) throws JSONException {
-        System.out.println(product);
         JSONObject jsonObj = new JSONObject(product);
         Product newProductWithOutId = new Product(
                 jsonObj.getJSONObject("product").getString("name"),
