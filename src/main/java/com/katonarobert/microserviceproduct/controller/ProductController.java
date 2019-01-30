@@ -21,21 +21,32 @@ public class ProductController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping(value = "/products")
+    @GetMapping(value = "/")
     public @ResponseBody List<Product> getAllProducts() {
         List<Product> all = productService.getAll();
         return all;
     }
 
-    @PostMapping(value = "/products/add-product")
+//    TODO: Finish shopping cart
+//    @GetMapping(value = "/shopping-cart/{id}")
+//    public @ResponseBody List<Product> getProductsByCustomer(@PathVariable String id) {
+//        List<Product> all = productService.getAllById(Integer.parseInt(id));
+//        return all;
+//    }
+
+    @PostMapping(value = "/add-product")
     public void addProduct(@RequestBody Product product)
     {
         System.out.println(product);
-        Product newProductWithOutId = new Product(product.getImgSrc(), product.getDescription());
+        Product newProductWithOutId = new Product(
+                product.getName(),
+                product.getImgSrc(),
+                product.getDescription(),
+                product.getPrice());
         productService.add(newProductWithOutId);
     }
 
-    @PostMapping(value = "/products/{id}/add-review")
+    @PostMapping(value = "/{id}/add-review")
     public void addReview(@PathVariable String id, @RequestBody String reviewValue) throws JSONException {
 
         JSONObject json = new JSONObject(reviewValue);

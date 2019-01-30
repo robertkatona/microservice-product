@@ -15,8 +15,8 @@ public class ProductsConfig {
 
     @PostConstruct
     public void init() {
-        Product product1 = new Product("hello.img", "This is a ....");
-        Product product2 = new Product("bello.img", "This is a ....");
+        Product product1 = new Product("Shit","hello.img", "This is a ....", 50.0);
+        Product product2 = new Product("ShitToo","bello.img", "This is a ....", 100.0);
         productRepository.saveAndFlush(product1);
         productRepository.saveAndFlush(product2);
     }
