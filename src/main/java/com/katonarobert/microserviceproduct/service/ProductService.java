@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ProductService {
@@ -29,4 +28,6 @@ public class ProductService {
     public Product getById(int id) {
         return productRepository.getOne(id);
     }
+
+
 }
