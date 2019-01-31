@@ -9,11 +9,12 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = {"http://192.168.160.164:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = {"*"})
 public class ProductController {
 
     @Autowired
@@ -22,8 +23,7 @@ public class ProductController {
     private ReviewService reviewService;
 
     @GetMapping(value = "/")
-    @CrossOrigin(origins = {"http://192.168.160.164:3000"}, allowedHeaders = "*", allowCredentials = "true")
-    public @ResponseBody List<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         List<Product> all = productService.getAll();
         return all;
     }
@@ -53,6 +53,14 @@ public class ProductController {
         Review review = new Review(byId, reviewValue);
         byId.addReview(review);
         reviewService.add(review);
+    }
 
+    @GetMapping(value = "/get-products-by-product-id")
+    public List<Product> getProductsById(List<Integer> productsInShoppingCart) {
+        List<Product> productsById = new ArrayList<>();
+        for (Integer productId: productsInShoppingCart) {
+            productsById.add(productService.getById(productId));
+        }
+        return productsById;
     }
 }
