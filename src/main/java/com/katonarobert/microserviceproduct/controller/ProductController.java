@@ -13,15 +13,16 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = {"http://192.168.160.164:3000"}, allowCredentials = "true")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
-
     @Autowired
     private ReviewService reviewService;
 
     @GetMapping(value = "/")
+    @CrossOrigin(origins = {"http://192.168.160.164:3000"}, allowedHeaders = "*", allowCredentials = "true")
     public @ResponseBody List<Product> getAllProducts() {
         List<Product> all = productService.getAll();
         return all;
