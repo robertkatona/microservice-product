@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -55,7 +56,7 @@ public class ProductController {
         reviewService.add(review);
     }
 
-    @GetMapping(value = "/get-products-by-product-id")
+    @PostMapping(value = "/get-products-by-product-id")
     public List<Product> getProductsById(List<Integer> productsInShoppingCart) {
         List<Product> productsById = new ArrayList<>();
         for (Integer productId: productsInShoppingCart) {

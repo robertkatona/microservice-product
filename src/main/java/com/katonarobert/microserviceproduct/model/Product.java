@@ -51,6 +51,26 @@ public class Product {
         return price;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
