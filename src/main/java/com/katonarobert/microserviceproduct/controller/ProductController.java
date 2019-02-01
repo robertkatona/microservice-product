@@ -37,13 +37,12 @@ public class ProductController {
 //    }
 
     @PostMapping(value = "/add-product")
-    public void addProduct(@RequestBody String product) throws JSONException {
-        JSONObject jsonObj = new JSONObject(product);
+    public void addProduct(@RequestBody Product product) throws JSONException {
         Product newProductWithOutId = new Product(
-                jsonObj.getJSONObject("product").getString("name"),
-                jsonObj.getJSONObject("product").getString("imgSrc"),
-                jsonObj.getJSONObject("product").getString("description"),
-                jsonObj.getJSONObject("product").getDouble("price"));
+                product.getName(),
+                product.getImgSrc(),
+                product.getDescription(),
+                product.getPrice());
         productService.add(newProductWithOutId);
 
     }

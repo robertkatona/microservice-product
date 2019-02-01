@@ -1,5 +1,7 @@
 package com.katonarobert.microserviceproduct.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Review {
     private int Id;
     @ManyToOne
     @JoinColumn(name = "fk_product")
+    @JsonIgnore
     private Product product;
     private String reviewValue;
 
